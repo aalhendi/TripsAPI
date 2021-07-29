@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    /*
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -42,28 +43,8 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: false,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: "First name is required",
-        },
-      },
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: false,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: "Last name is required",
-        },
-      },
-    },
+    */
   });
+
   return User;
 };
