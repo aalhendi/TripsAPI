@@ -6,7 +6,7 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 /* Route Imports */
 const userRoutes = require("./API/user/routes");
-const tripRouters = require("./API/trips/routes");
+const tripRoutes = require("./API/trips/routes");
 
 //database
 const app = express();
@@ -20,10 +20,9 @@ app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-
 //Routes
 app.use("/", userRoutes);
-app.use("/", tripRouters);
+app.use("/trips", tripRoutes);
 app.use("/media", express.static("media"));
 
 //Error Handling

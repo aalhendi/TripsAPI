@@ -12,6 +12,15 @@ exports.fetchTrips = async (req, res, next) => {
   }
 };
 
+exports.fetchTrip = async (tripId, next) => {
+  try {
+    const trip = await Trips.findByPk(tripId);
+    return trip;
+  } catch (error) {
+    next(error);
+  }
+};
+
 // exports.createTrip = async (req, res, next) => {
 //   try {
 //     const newTrip = await Trips.create(req.body);
@@ -20,3 +29,12 @@ exports.fetchTrips = async (req, res, next) => {
 //     console.error(error);
 //   }
 // };
+
+exports.deleteTrip = async (req, res, next) => {
+  try {
+    await req.trip.destroy();
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
