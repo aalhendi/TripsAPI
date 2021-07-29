@@ -1,4 +1,3 @@
-const SequlizeSlugify = require("-slugify");
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     username: {
