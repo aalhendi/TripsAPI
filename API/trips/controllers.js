@@ -31,7 +31,6 @@ exports.fetchTrip = async (tripId, next) => {
 // };
 
 exports.deleteTrip = async (req, res, next) => {
-  console.log(req.trip);
   try {
     await req.trip.destroy();
     res.status(204).end();
