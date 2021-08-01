@@ -13,6 +13,12 @@ exports.fetchProfile = async (profileId, next) => {
 
 exports.updateProfile = async (req, res, next) => {
   try {
+    /* The user updating the profile must be the owner*/
+    if (req.user.id !== req.profile.userId) {
+      const error = new Error("Unauthorized.");
+      error.status = 401;
+      return next(error);
+    }
     if (req.file) {
       req.body.image = `http://${req.get("host")}/${req.file.path}`;
     }

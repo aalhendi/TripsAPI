@@ -1,6 +1,7 @@
 /* Imports */
 const express = require("express");
 const { fetchProfile, updateProfile } = require("./controllers");
+const passport = require("passport");
 const router = express.Router();
 
 /* Param middleware */
@@ -17,6 +18,10 @@ router.param("profileId", async (req, res, next, profileId) => {
 });
 
 /* Update Profile */
-router.put("/:profileId", updateProfile);
+router.put(
+  "/:profileId",
+  passport.authenticate("jwt", { session: false }),
+  updateProfile
+);
 
 module.exports = router;
