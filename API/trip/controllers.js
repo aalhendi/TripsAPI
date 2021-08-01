@@ -34,7 +34,7 @@ exports.createTrip = async (req, res, next) => {
 
 exports.deleteTrip = async (req, res, next) => {
   try {
-    /* The user adding the trip must be the creator*/
+    /* The user deleting the trip must be the creator*/
     if (req.user.id !== req.trip.userId) {
       const error = new Error("Unauthorized.");
       error.status = 401;
@@ -46,3 +46,18 @@ exports.deleteTrip = async (req, res, next) => {
     next(error);
   }
 };
+exports.updateTrip = async (req, res, next) => {
+  try {
+    
+    /* The user updating the trip must be the creator*/
+    if (req.user.id !== req.trip.userId) {
+      const error = new Error("Unauthorized.");
+      error.status = 401;
+      return next(error);
+    }
+    if(req.file) req.body.image = `http://${req.get("host")}/${req.file.path}`;
+     const updatedTrip = await req.trip.update(req.body);
+      res.json(updatedTrip);
+  }catch(error){
+       next(error);
+   }};
