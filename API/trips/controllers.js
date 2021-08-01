@@ -23,6 +23,7 @@ exports.fetchTrip = async (tripId, next) => {
 
 exports.createTrip = async (req, res, next) => {
   try {
+    if (req.file) req.body.image = `http://${req.get("host")}/${req.file.path}`;
     req.body.userId = req.user.id;
     const newTrip = await Trip.create(req.body);
     res.status(201).json(newTrip);

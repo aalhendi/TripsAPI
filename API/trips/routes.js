@@ -1,7 +1,12 @@
 /* Imports */
 const express = require("express");
 const multer = require("multer");
-const { fetchTrips, deleteTrip, fetchTrip } = require("./controllers");
+const {
+  fetchTrips,
+  deleteTrip,
+  fetchTrip,
+  createTrip,
+} = require("./controllers");
 const passport = require("passport");
 
 const router = express.Router();
@@ -32,7 +37,12 @@ const upload = multer({ storage });
 
 // Get Trips
 router.get("/", fetchTrips);
-// router.post("/trips", upload.single("image"),createTrip);
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  createTrip
+);
 router.delete(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),
