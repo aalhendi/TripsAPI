@@ -46,3 +46,11 @@ exports.deleteTrip = async (req, res, next) => {
     next(error);
   }
 };
+exports.updateTrip = async (req, res, next) => {
+  try{ 
+      if(req.file) req.body.image = `http://${req.get("host")}/${req.file.path}`;
+     const updatedTrip = await req.trip.update(req.body);
+      res.json(updatedTrip);
+   }catch(error){
+       next(error);
+   }};
