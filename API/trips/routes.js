@@ -49,6 +49,10 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   deleteTrip
 );
-router.put("/:tripId",upload.single("image"),updateTrip);
+router.put(
+  "/:tripId",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),updateTrip
+  );
 
 module.exports = router;

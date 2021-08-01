@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
+const bodyParser = require("body-parser");
 
 /* Route Imports */
 const userRoutes = require("./API/user/routes");
@@ -15,6 +16,7 @@ const db = require("./db/models");
 //Middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(passport.initialize());
 passport.use(localStrategy);
