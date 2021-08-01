@@ -28,3 +28,11 @@ exports.updateProfile = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.findProfile = async (req, res, next) => {
+  try {
+    res.json(req.profile);
+  } catch (error) {
+    next(error);
+  }
+};
