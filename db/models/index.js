@@ -53,4 +53,13 @@ db.Trip.belongsTo(db.User, {
   as: "user",
 });
 
+db.User.hasOne(db.Profile, {
+  as: "profile",
+  foreignKey: "userId",
+});
+
+db.Profile.belongsTo(db.User, {
+  as: "user",
+});
+
 module.exports = db;

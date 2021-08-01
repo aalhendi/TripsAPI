@@ -1,5 +1,5 @@
 /* Models */
-const { User } = require("../../db/models");
+const { User, Profile } = require("../../db/models");
 /* Imports */
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -18,6 +18,26 @@ exports.register = async (req, res, next) => {
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
+
+    /* Create Profile */
+    /* Check if user has a profile (sanity) */
+    const foundProfile = await Profile.findOne({
+      where: { userId: newUser.id },
+    });
+    /* Prevent user from having two profiles */
+    if (foundProfile) {
+      const error = new Error("User already has a Profile.");
+      error.status = 400;
+      return next(error);
+    }
+    /* Create empty profile */
+    await Profile.create({
+      userId: newUser.id,
+      bio: "",
+      image: "",
+    });
+    /* End Create Profile */
+
     res.json({ token });
   } catch (error) {
     next(error);
