@@ -6,7 +6,7 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 /* Route Imports */
 const userRoutes = require("./API/user/routes");
-const tripRoutes = require("./API/trips/routes");
+const tripRoutes = require("./API/trip/routes");
 
 //database
 const app = express();
