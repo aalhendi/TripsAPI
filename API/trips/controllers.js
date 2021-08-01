@@ -37,7 +37,7 @@ exports.deleteTrip = async (req, res, next) => {
     /* The user adding the trip must be the creator*/
     if (req.user.id !== req.trip.userId) {
       const error = new Error("Unauthorized.");
-      error.status = 400;
+      error.status = 401;
       return next(error);
     }
     await req.trip.destroy();
