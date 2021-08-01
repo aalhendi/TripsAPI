@@ -1,6 +1,6 @@
 /* Imports */
 const express = require("express");
-const { fetchProfile, updateProfile } = require("./controllers");
+const { fetchProfile, updateProfile, findProfile } = require("./controllers");
 const passport = require("passport");
 const router = express.Router();
 
@@ -23,5 +23,8 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   updateProfile
 );
+
+/* Fetch Profile */
+router.get("/:profileId", findProfile);
 
 module.exports = router;
