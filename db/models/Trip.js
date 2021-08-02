@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true, //why unique ?
+      unique: false,
       validate: {
         notEmpty: {
           args: true,
