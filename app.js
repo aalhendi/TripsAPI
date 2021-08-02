@@ -10,12 +10,12 @@ const tripRoutes = require("./API/trip/routes");
 const profileRoutes = require("./API/profile/routes");
 
 //database
-const app = express();
 const db = require("./db/models");
+const app = express();
+
 
 //Middleware
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
 passport.use(localStrategy);
