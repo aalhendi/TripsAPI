@@ -11,11 +11,12 @@ const profileRoutes = require("./API/profile/routes");
 
 //database
 const app = express();
+//why you are importing db after the app???
 const db = require("./db/models");
 
 //Middleware
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // Do you need this?
 app.use(express.json());
 app.use(passport.initialize());
 passport.use(localStrategy);

@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    // delete the comment 👇🏻
     /*
     email: {
       type: DataTypes.STRING,

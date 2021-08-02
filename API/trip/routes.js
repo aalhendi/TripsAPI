@@ -12,6 +12,7 @@ const passport = require("passport");
 
 const router = express.Router();
 
+// lets clean this up and move the multer to middleware folder.
 /* Multer */
 const storage = multer.diskStorage({
   destination: "./media",
@@ -52,7 +53,8 @@ router.delete(
 router.put(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),
-  upload.single("image"),updateTrip
-  );
+  upload.single("image"),
+  updateTrip
+);
 
 module.exports = router;
