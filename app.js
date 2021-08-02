@@ -16,7 +16,6 @@ const app = express();
 
 //Middleware
 app.use(cors());
-app.use(express.urlencoded({ extended: true })); // Do you need this?
 app.use(express.json());
 app.use(passport.initialize());
 passport.use(localStrategy);
