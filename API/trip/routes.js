@@ -1,6 +1,6 @@
 /* Imports */
 const express = require("express");
-const multer = require("multer");
+const { upload } = require("../../middleware/multer");
 const {
   fetchTrips,
   deleteTrip,
@@ -11,14 +11,6 @@ const {
 const passport = require("passport");
 
 const router = express.Router();
-
-/* Multer */
-const storage = multer.diskStorage({
-  destination: "./media",
-  filename: (req, file, cb) => {
-    cb(null, `${+new Date()}${file.originalname}`);
-  },
-});
 
 /* Param middleware */
 router.param("tripId", async (req, res, next, tripId) => {
@@ -32,9 +24,6 @@ router.param("tripId", async (req, res, next, tripId) => {
     next(error);
   }
 });
-
-/* Multer */
-const upload = multer({ storage });
 
 // Get Trips
 router.get("/", fetchTrips);
@@ -52,7 +41,8 @@ router.delete(
 router.put(
   "/:tripId",
   passport.authenticate("jwt", { session: false }),
-  upload.single("image"),updateTrip
-  );
+  upload.single("image"),
+  updateTrip
+);
 
 module.exports = router;
