@@ -2,6 +2,7 @@
 const express = require("express");
 const { fetchProfile, updateProfile, findProfile } = require("./controllers");
 const passport = require("passport");
+const { upload } = require("../../middleware/multer");
 const router = express.Router();
 
 /* Param middleware */
@@ -20,6 +21,7 @@ router.param("profileId", async (req, res, next, profileId) => {
 /* Update Profile */
 router.put(
   "/:profileId",
+  upload.single("image"),
   passport.authenticate("jwt", { session: false }),
   updateProfile
 );
