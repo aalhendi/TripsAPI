@@ -10,9 +10,9 @@ const tripRoutes = require("./API/trip/routes");
 const profileRoutes = require("./API/profile/routes");
 
 //database
-const app = express();
-//why you are importing db after the app???
 const db = require("./db/models");
+const app = express();
+
 
 //Middleware
 app.use(cors());
