@@ -20,20 +20,6 @@ exports.register = async (req, res, next) => {
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
 
     /* Create Profile */
-    //👇🏻 what?🤯 how would the user who just signed up has a profile?
-    /* Check if user has a profile (sanity) */
-    const foundProfile = await Profile.findOne({
-      where: { userId: newUser.id },
-    });
-    /* Prevent user from having two profiles */
-    if (foundProfile) {
-      const error = new Error("User already has a Profile.");
-      error.status = 400;
-      return next(error);
-    }
-    // 👆🏻
-
-    /* Create empty profile */
     await Profile.create({
       userId: newUser.id,
       bio: "",
