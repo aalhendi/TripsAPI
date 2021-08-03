@@ -11,6 +11,15 @@ exports.fetchProfile = async (profileId, next) => {
   }
 };
 
+exports.fetchAllProfiles = async (req, res, next) => {
+  try {
+    const profiles = await Profile.findAll();
+    res.json(profiles);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.updateProfile = async (req, res, next) => {
   try {
     /* The user updating the profile must be the owner*/

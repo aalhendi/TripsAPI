@@ -13,7 +13,6 @@ const profileRoutes = require("./API/profile/routes");
 const db = require("./db/models");
 const app = express();
 
-
 //Middleware
 app.use(cors());
 app.use(express.json());

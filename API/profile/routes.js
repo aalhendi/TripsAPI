@@ -1,6 +1,11 @@
 /* Imports */
 const express = require("express");
-const { fetchProfile, updateProfile, findProfile } = require("./controllers");
+const {
+  fetchProfile,
+  updateProfile,
+  findProfile,
+  fetchAllProfiles,
+} = require("./controllers");
 const passport = require("passport");
 const { upload } = require("../../middleware/multer");
 const router = express.Router();
@@ -28,5 +33,8 @@ router.put(
 
 /* Fetch Profile */
 router.get("/:profileId", findProfile);
+
+/* Fetch all profiles */
+router.get("/", fetchAllProfiles);
 
 module.exports = router;

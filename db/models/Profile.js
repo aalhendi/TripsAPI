@@ -4,6 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     bio: {
       type: DataTypes.TEXT,
     },
+    username: {
+      type: DataTypes.STRING,
+    },
   });
 
   return Profile;
