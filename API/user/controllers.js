@@ -22,8 +22,10 @@ exports.register = async (req, res, next) => {
     /* Create Profile */
     await Profile.create({
       userId: newUser.id,
-      bio: "",
-      image: "",
+      bio: "I don't have a bio",
+      image:
+        "https://www.vhv.rs/dpng/d/526-5268314_empty-avatar-png-user-icon-png-transparent-png.png",
+      username: newUser.username,
     });
     /* End Create Profile */
 
