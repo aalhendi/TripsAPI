@@ -4,8 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     bio: {
       type: DataTypes.TEXT,
     },
-    // no need for username field here.
-    // you already have a username in the User model.
     username: {
       type: DataTypes.STRING,
     },
